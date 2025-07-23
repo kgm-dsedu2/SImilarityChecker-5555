@@ -37,6 +37,15 @@ public:
   }
   int scoreLengthThroughLengths(LongNShortLength lengths)
   {
+    if (lengths.LongLen == lengths.ShortLen)
+    {
+      return 60;
+    }
+    if (lengths.ShortLen == 0)
+    {
+      return -1; // ERROR
+    }
+
     int score = 120 - (60 * lengths.LongLen / lengths.ShortLen);
     if (score < 0)
     {
