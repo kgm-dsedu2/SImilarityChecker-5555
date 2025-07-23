@@ -3,26 +3,40 @@
 
 using namespace std;
 
+struct LongNShortLength
+{
+  int LongLen;
+  int ShortLen;
+};
+
 class similiarChecker
 {
 public:
   int scoreStringLengthCheck(string str1, string str2)
   {
     int score;
-    int longLen;
-    int shortLen;
+    score = scoreLengthThroughLengths(GetLongNShortLength(str1, str2));
+
+    return score;
+  }
+  LongNShortLength GetLongNShortLength(std::string& str1, std::string& str2)
+  {
+    LongNShortLength lengths;
     if (str1.length() > str2.length())
     {
-      longLen = str1.length();
-      shortLen = str2.length();
+      lengths.LongLen = str1.length();
+      lengths.ShortLen = str2.length();
     }
     else
     {
-      longLen = str2.length();
-      shortLen = str1.length();
+      lengths.LongLen = str2.length();
+      lengths.ShortLen = str1.length();
     }
-    score = 60 - ((longLen - shortLen) * 60 / shortLen);
 
-    return score;
+    return lengths;
+  }
+  int scoreLengthThroughLengths(LongNShortLength lengths)
+  {
+    return 120 - (60 * lengths.LongLen / lengths.ShortLen);
   }
 };

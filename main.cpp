@@ -1,5 +1,6 @@
 #include "gmock/gmock.h"
 #include "similiarChecker.cpp"
+#include "main.h"
 
 using namespace testing;
 
@@ -7,38 +8,33 @@ class SimiliarCheckerFIxture : public testing::Test
 {
 public:
   similiarChecker checker;
+
+  void CheckStringLengthScore(const string str1, const string str2, int expected)
+  {
+    int real = checker.scoreStringLengthCheck(str1, str2);
+    EXPECT_EQ(expected, real);
+  }
 };
 
 TEST_F(SimiliarCheckerFIxture, checkStringLength_60)
 {
-  int expected = 60;
-  int real = checker.scoreStringLengthCheck("ASD", "DSA");
-
-  EXPECT_EQ(expected, real);
+  CheckStringLengthScore("ASD", "DSA", 60);
 }
+
 
 TEST_F(SimiliarCheckerFIxture, checkStringLength_0)
 {
-  int expected = 0;
-  int real = checker.scoreStringLengthCheck("A", "BB");
-
-  EXPECT_EQ(expected, real);
+  CheckStringLengthScore("A", "BB", 0);
 }
 
 TEST_F(SimiliarCheckerFIxture, checkStringLength_middle)
 {
-  int expected = 20;
-  int real = checker.scoreStringLengthCheck("AAABB", "BAA");
-
-  EXPECT_EQ(expected, real);
+  CheckStringLengthScore("AAABB", "BAA", 20);
 }
 
 TEST_F(SimiliarCheckerFIxture, checkStringLength_middle2)
 {
-  int expected = 30;
-  int real = checker.scoreStringLengthCheck("AA", "AAE");
-
-  EXPECT_EQ(expected, real);
+  CheckStringLengthScore("AA", "AAE", 30);
 }
 
 
