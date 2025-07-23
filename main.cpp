@@ -19,24 +19,25 @@ public:
 TEST_F(SimiliarCheckerFIxture, checkStringLength_60)
 {
   CheckStringLengthScore("ASD", "DSA", 60);
+  CheckStringLengthScore("QQQQQQ", "DSRDSR", 60);
+  CheckStringLengthScore("ASDAJJW", "ADSAASD", 60);
+  CheckStringLengthScore("A", "D", 60);
 }
 
 
 TEST_F(SimiliarCheckerFIxture, checkStringLength_0)
 {
   CheckStringLengthScore("A", "BB", 0);
+  CheckStringLengthScore("AB", "EDASW", 0);
+  CheckStringLengthScore("TQQQ", "F", 0);
 }
 
-TEST_F(SimiliarCheckerFIxture, checkStringLength_middle)
+TEST_F(SimiliarCheckerFIxture, checkStringLength_middlescore)
 {
   CheckStringLengthScore("AAABB", "BAA", 20);
-}
-
-TEST_F(SimiliarCheckerFIxture, checkStringLength_middle2)
-{
   CheckStringLengthScore("AA", "AAE", 30);
+  CheckStringLengthScore("AAAVSWE", "QQQWWWAAE", 43);
 }
-
 
 int main()
 {
