@@ -21,7 +21,7 @@ public:
       longLen = str2.length();
       shortLen = str1.length();
     }
-    score = (2 - (longLen / shortLen)) * 60;
+    score = 60 - ((longLen - shortLen) * 60 / shortLen);
 
     return score;
   }

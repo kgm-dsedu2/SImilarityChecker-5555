@@ -3,25 +3,42 @@
 
 using namespace testing;
 
-TEST(TS, checkStringLength_60)
+class SimiliarCheckerFIxture : public testing::Test
 {
-  similiarChecker app;
+public:
+  similiarChecker checker;
+};
+
+TEST_F(SimiliarCheckerFIxture, checkStringLength_60)
+{
   int expected = 60;
-  int real = app.scoreStringLengthCheck("ASD", "DSA");
+  int real = checker.scoreStringLengthCheck("ASD", "DSA");
 
   EXPECT_EQ(expected, real);
 }
 
-TEST(TS, checkStringLength_0)
+TEST_F(SimiliarCheckerFIxture, checkStringLength_0)
 {
-  similiarChecker app;
-  int score = app.scoreStringLengthCheck("A", "B");
+  int expected = 0;
+  int real = checker.scoreStringLengthCheck("A", "BB");
+
+  EXPECT_EQ(expected, real);
 }
 
-TEST(TS, checkStringLength_middle)
+TEST_F(SimiliarCheckerFIxture, checkStringLength_middle)
 {
-  similiarChecker app;
-  int score = app.scoreStringLengthCheck("AA", "AAE");
+  int expected = 20;
+  int real = checker.scoreStringLengthCheck("AAABB", "BAA");
+
+  EXPECT_EQ(expected, real);
+}
+
+TEST_F(SimiliarCheckerFIxture, checkStringLength_middle2)
+{
+  int expected = 30;
+  int real = checker.scoreStringLengthCheck("AA", "AAE");
+
+  EXPECT_EQ(expected, real);
 }
 
 
